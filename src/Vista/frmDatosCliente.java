@@ -17,15 +17,12 @@ public class frmDatosCliente extends javax.swing.JDialog {
     /**
      * Creates new form frmVenderCarton
      */
-    
     public frmDatosCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
-    private clsCarton carton;
-    private clsPersona persona;
-    private frmBingo bingoVista;
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +42,8 @@ public class frmDatosCliente extends javax.swing.JDialog {
         txtCedula = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         btnCerrar = new javax.swing.JButton();
+
+        setTitle("Datos del Cliente");
 
         jLabel1.setText("Nombre");
 
@@ -201,13 +200,11 @@ public class frmDatosCliente extends javax.swing.JDialog {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public clsCarton getCarton() {
-        return carton;
-    }
-
-    public void setCarton(clsCarton carton) {
-        this.carton = carton;
-        this.persona = carton.getPersona();
-        this.lblNumCarton.setText(this.lblNumCarton.getText() + carton.getNumCarton());
+    public void cargarDatosCliente(clsPersona persona) {
+        this.lblNumCarton.setText(this.lblNumCarton.getText() + persona.getNumCarton());
+        txtNombre.setText(persona.getNombre());
+        txtApellidos.setText(persona.getApellido());
+        txtCedula.setText(String.valueOf(persona.getCedula()));
+        txtTelefono.setText(String.valueOf(persona.getTelefono()));
     }
 }

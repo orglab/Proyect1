@@ -5,8 +5,12 @@
  */
 package Vista;
 
+import Datos.BingoDatos;
 import Logica.clsCarton;
 import Logica.clsPersona;
+import com.sun.glass.events.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,15 +21,18 @@ public class frmComprarCarton extends javax.swing.JDialog {
     /**
      * Creates new form frmVenderCarton
      */
-    
     public frmComprarCarton(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
-    
-    private clsCarton carton;
-    private clsPersona persona;
-    private frmBingo bingoVista;
+
+    frmBingo vistaBingo;
+
+    public void setVistaBingo(frmBingo vistaBingo) {
+        this.vistaBingo = vistaBingo;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +56,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
         txtNumCarton = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Comprar Cartón");
 
         jLabel1.setText("Nombre");
 
@@ -71,6 +79,24 @@ public class frmComprarCarton extends javax.swing.JDialog {
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        txtNumCarton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumCartonKeyTyped(evt);
             }
         });
 
@@ -139,18 +165,79 @@ public class frmComprarCarton extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
+
+        if (txtNombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "El campo Nombre es requerido");
+            return;
+        }
+        if (txtApellidos.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "El campo Apellidos es requerido");
+            return;
+        }
+        if (txtCedula.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "El campo Cédula es requerido");
+            return;
+        }
+        if (txtTelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "El campo Teléfono es requerido");
+            return;
+        }
+        if (txtNumCarton.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "El campo Cartón # es requerido");
+            return;
+        }
+
+        int numCarton = Integer.parseInt(txtNumCarton.getText());
+
+        if (numCarton > 10 || numCarton < 1) {
+            JOptionPane.showMessageDialog(rootPane, "El campo Cartón # debe ser entre 1 y 10");
+            return;
+        }
+        if (!vistaBingo.isCartonDisponible(numCarton)) {
+            JOptionPane.showMessageDialog(rootPane, "Ese numero de cartón se encuentra vendido");
+            return;
+        }
+        clsPersona persona = new clsPersona();
+
+        persona.setNumCarton(numCarton);
         persona.setNombre(txtNombre.getText());
         persona.setApellido(txtApellidos.getText());
         persona.setTelefono(Integer.parseInt(txtTelefono.getText()));
         persona.setCedula(Integer.parseInt(txtCedula.getText()));
+        vistaBingo.comprarCarton(persona);
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtNumCarton.setText(null);
         txtNombre.setText(null);
         txtApellidos.setText(null);
         txtCedula.setText(null);
         txtTelefono.setText(null);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNumCartonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumCartonKeyTyped
+        char tecla = evt.getKeyChar();
+
+        if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACKSPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumCartonKeyTyped
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char tecla = evt.getKeyChar();
+
+        if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACKSPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char tecla = evt.getKeyChar();
+
+        if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACKSPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -210,16 +297,4 @@ public class frmComprarCarton extends javax.swing.JDialog {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public clsCarton getCarton() {
-        return carton;
-    }
-
-    public void setCarton(clsCarton carton) {
-        this.carton = carton;
-        this.persona = carton.getPersona();
-    }
-
-    void setCarton() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

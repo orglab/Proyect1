@@ -9,6 +9,7 @@ import Logica.clsCarton;
 import Datos.BingoDatos;
 import Logica.clsBolitas;
 import Logica.clsPersona;
+import java.util.ArrayList;
 import javafx.scene.input.KeyCode;
 import static javafx.scene.input.KeyCode.O;
 import javax.swing.JTable;
@@ -21,7 +22,7 @@ import javax.swing.table.TableModel;
  */
 public class frmBingo extends javax.swing.JFrame {
 
-    Object persona[] = new Object[10];
+    private ArrayList<clsPersona> personas = new ArrayList<clsPersona>();
     BingoDatos bingoDatos;
     DefaultTableModel bingoModel;
     clsBolitas bolita;
@@ -167,6 +168,7 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado1.setText("DISPONIBLE");
 
         btnDatosCliente1.setText("Datos del Cliente");
+        btnDatosCliente1.setEnabled(false);
         btnDatosCliente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDatosCliente1ActionPerformed(evt);
@@ -248,6 +250,7 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado2.setText("DISPONIBLE");
 
         btnDatosCliente2.setText("Datos del Cliente");
+        btnDatosCliente2.setEnabled(false);
         btnDatosCliente2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDatosCliente2ActionPerformed(evt);
@@ -329,6 +332,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado3.setText("DISPONIBLE");
 
         btnDatosCliente3.setText("Datos del Cliente");
+        btnDatosCliente3.setEnabled(false);
+        btnDatosCliente3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -405,6 +414,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado4.setText("DISPONIBLE");
 
         btnDatosCliente4.setText("Datos del Cliente");
+        btnDatosCliente4.setEnabled(false);
+        btnDatosCliente4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -481,6 +496,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado5.setText("DISPONIBLE");
 
         btnDatosCliente5.setText("Datos del Cliente");
+        btnDatosCliente5.setEnabled(false);
+        btnDatosCliente5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -557,6 +578,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado6.setText("DISPONIBLE");
 
         btnDatosCliente6.setText("Datos del Cliente");
+        btnDatosCliente6.setEnabled(false);
+        btnDatosCliente6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -633,6 +660,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado7.setText("DISPONIBLE");
 
         btnDatosCliente7.setText("Datos del Cliente");
+        btnDatosCliente7.setEnabled(false);
+        btnDatosCliente7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -709,6 +742,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado8.setText("DISPONIBLE");
 
         btnDatosCliente8.setText("Datos del Cliente");
+        btnDatosCliente8.setEnabled(false);
+        btnDatosCliente8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -717,14 +756,16 @@ public class frmBingo extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDatosCliente8, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(lblEstado8)))
                 .addGap(61, 61, 61))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnDatosCliente8, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -735,9 +776,8 @@ public class frmBingo extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lblEstado8))
-                .addGap(18, 18, 18)
-                .addComponent(btnDatosCliente8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btnDatosCliente8))
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cartón 9", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -785,6 +825,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado9.setText("DISPONIBLE");
 
         btnDatosCliente9.setText("Datos del Cliente");
+        btnDatosCliente9.setEnabled(false);
+        btnDatosCliente9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -861,6 +907,12 @@ public class frmBingo extends javax.swing.JFrame {
         lblEstado10.setText("DISPONIBLE");
 
         btnDatosCliente10.setText("Datos del Cliente");
+        btnDatosCliente10.setEnabled(false);
+        btnDatosCliente10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -944,25 +996,21 @@ public class frmBingo extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Archivo");
 
         jMenuItem5.setText("Salir");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -970,11 +1018,6 @@ public class frmBingo extends javax.swing.JFrame {
         jMenu2.setText("Edit");
 
         jMenuItem1.setText("Nuevo Juego");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Generar Cartones");
@@ -984,11 +1027,6 @@ public class frmBingo extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Comenzar Juego");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -1036,7 +1074,7 @@ public class frmBingo extends javax.swing.JFrame {
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1075,9 +1113,9 @@ public class frmBingo extends javax.swing.JFrame {
                                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
+                        .addGap(103, 103, 103)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1100,31 +1138,57 @@ public class frmBingo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarCarActionPerformed
 
     private void btnDatosCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente1ActionPerformed
-        this.cargarDatosCliente(bingoDatos.getCartones()[0]);
-
+        mostrarDatosPersona(1);
     }//GEN-LAST:event_btnDatosCliente1ActionPerformed
 
     private void btnDatosCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente2ActionPerformed
-        this.cargarDatosCliente(bingoDatos.getCartones()[1]);
+        mostrarDatosPersona(2);
     }//GEN-LAST:event_btnDatosCliente2ActionPerformed
 
     private void btnVenderCartonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderCartonActionPerformed
         // TODO add your handling code here:
-        frmComprarCarton ComprarC = new frmComprarCarton(this, true);
-        ComprarC.setVisible(true);
+        frmComprarCarton ventanaComprar = new frmComprarCarton(this, true);
+        ventanaComprar.setVistaBingo(this);
+        ventanaComprar.setVisible(true);
     }//GEN-LAST:event_btnVenderCartonActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void btnDatosCliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente3ActionPerformed
+        mostrarDatosPersona(3);
+    }//GEN-LAST:event_btnDatosCliente3ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void btnDatosCliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente4ActionPerformed
+        mostrarDatosPersona(4);
+    }//GEN-LAST:event_btnDatosCliente4ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void btnDatosCliente5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        mostrarDatosPersona(5);
+    }//GEN-LAST:event_btnDatosCliente5ActionPerformed
+
+    private void btnDatosCliente6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente6ActionPerformed
+        // TODO add your handling code here:
+        mostrarDatosPersona(6);
+    }//GEN-LAST:event_btnDatosCliente6ActionPerformed
+
+    private void btnDatosCliente7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente7ActionPerformed
+        // TODO add your handling code here:
+        mostrarDatosPersona(7);
+    }//GEN-LAST:event_btnDatosCliente7ActionPerformed
+
+    private void btnDatosCliente8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente8ActionPerformed
+        // TODO add your handling code here:
+        mostrarDatosPersona(8);
+    }//GEN-LAST:event_btnDatosCliente8ActionPerformed
+
+    private void btnDatosCliente9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente9ActionPerformed
+        // TODO add your handling code here:
+        mostrarDatosPersona(9);
+    }//GEN-LAST:event_btnDatosCliente9ActionPerformed
+
+    private void btnDatosCliente10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente10ActionPerformed
+        // TODO add your handling code here:
+        mostrarDatosPersona(10);
+    }//GEN-LAST:event_btnDatosCliente10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1154,10 +1218,8 @@ public class frmBingo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmBingo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmBingo().setVisible(true);
         });
     }
 
@@ -1225,16 +1287,16 @@ public class frmBingo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JLabel lblEstado1;
-    private javax.swing.JLabel lblEstado10;
-    private javax.swing.JLabel lblEstado2;
-    private javax.swing.JLabel lblEstado3;
-    private javax.swing.JLabel lblEstado4;
-    private javax.swing.JLabel lblEstado5;
-    private javax.swing.JLabel lblEstado6;
-    private javax.swing.JLabel lblEstado7;
-    private javax.swing.JLabel lblEstado8;
-    private javax.swing.JLabel lblEstado9;
+    public javax.swing.JLabel lblEstado1;
+    public javax.swing.JLabel lblEstado10;
+    public javax.swing.JLabel lblEstado2;
+    public javax.swing.JLabel lblEstado3;
+    public javax.swing.JLabel lblEstado4;
+    public javax.swing.JLabel lblEstado5;
+    public javax.swing.JLabel lblEstado6;
+    public javax.swing.JLabel lblEstado7;
+    public javax.swing.JLabel lblEstado8;
+    public javax.swing.JLabel lblEstado9;
     private javax.swing.JTable tblBolitas;
     // End of variables declaration//GEN-END:variables
 
@@ -1256,16 +1318,87 @@ public class frmBingo extends javax.swing.JFrame {
     }
 
     public void sacarBola(int bolita) {
-        Object vectData[] = new Object[1];;
+        Object vectData[] = new Object[1];
         bingoModel = (DefaultTableModel) tblBolitas.getModel();
         vectData[0] = bolita;
         bingoModel.addRow(vectData);
         tblBolitas.setModel(bingoModel);
     }
 
-    private void cargarDatosCliente(clsCarton carton) {
-        frmDatosCliente detalleCliente = new frmDatosCliente(this, true);
-        detalleCliente.setCarton(carton);
-        detalleCliente.setVisible(true);
+    public void comprarCarton(clsPersona persona) {
+        personas.add(persona);
+        String estado = "VENDIDO";
+        switch (persona.getNumCarton()) {
+            case 1:
+                lblEstado1.setText(estado);
+                btnDatosCliente1.setEnabled(true);
+                break;
+            case 2:
+                lblEstado2.setText(estado);
+                btnDatosCliente2.setEnabled(true);
+                break;
+            case 3:
+                lblEstado3.setText(estado);
+                btnDatosCliente3.setEnabled(true);
+                break;
+            case 4:
+                lblEstado4.setText(estado);
+                btnDatosCliente4.setEnabled(true);
+                break;
+            case 5:
+                lblEstado5.setText(estado);
+                btnDatosCliente5.setEnabled(true);
+                break;
+            case 6:
+                lblEstado6.setText(estado);
+                btnDatosCliente6.setEnabled(true);
+                break;
+            case 7:
+                lblEstado7.setText(estado);
+                btnDatosCliente7.setEnabled(true);
+                break;
+            case 8:
+                lblEstado8.setText(estado);
+                btnDatosCliente8.setEnabled(true);
+                break;
+            case 9:
+                lblEstado9.setText(estado);
+                btnDatosCliente9.setEnabled(true);
+                break;
+            case 10:
+                lblEstado10.setText(estado);
+                btnDatosCliente10.setEnabled(true);
+                break;
+        }
+    }
+
+    public boolean isCartonDisponible(int numCarton) {
+        for (int i = 0; i < personas.size(); i++) {
+            clsPersona persona = personas.get(i);
+
+            if (persona.getNumCarton() == numCarton) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private clsPersona buscarPersonaPorNumCarton(int numCarton) {
+        for (int i = 0; i < personas.size(); i++) {
+            clsPersona persona = personas.get(i);
+
+            if (persona.getNumCarton() == numCarton) {
+                return persona;
+            }
+        }
+        return null;
+    }
+    
+    private void mostrarDatosPersona(int numCarton){
+        clsPersona persona = buscarPersonaPorNumCarton(numCarton);
+        frmDatosCliente ventanaDatos = new frmDatosCliente(this, true);
+        ventanaDatos.cargarDatosCliente(persona);
+        ventanaDatos.setVisible(true);
     }
 }

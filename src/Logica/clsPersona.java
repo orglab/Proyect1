@@ -14,15 +14,10 @@ public class clsPersona {
     private String apellido;
     private int cedula;
     private int telefono;
-
-    public clsPersona(String nombre, String apellido, int cedula, int telefono) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.cedula = cedula;
-        this.telefono = telefono;
-    }
+    private int numCarton;
     
        public clsPersona() {
+        this.numCarton = 0;
         this.nombre = null;
         this.apellido = null;
         this.cedula = 0;
@@ -61,4 +56,11 @@ public class clsPersona {
         this.telefono = telefono;
     }
     
+    public int getNumCarton() {
+        return numCarton;
+    }
+
+    public void setNumCarton(int numCarton) {
+        this.numCarton = numCarton;
+    }
 }

@@ -69,7 +69,8 @@ public class clsBolitas extends Thread {
 
                 for (int i = 0; i < 75; i++) {
                     gbingo.sacarBola(numerosBingo[i]);
-                    Thread.sleep(5000);
+                    Thread.sleep(100);
+                    cantBolitas++;
                 }
 
             } catch (InterruptedException ex) {

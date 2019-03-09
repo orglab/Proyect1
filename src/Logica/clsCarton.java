@@ -14,7 +14,7 @@ public final class clsCarton extends Thread {
     private boolean continuar = true; //flag para saber si continua el procedimiento
     private int numCarton;
     private int[][] numeros;
-    private clsPersona persona;
+    
 
     public clsCarton(int numCarton) {
         this.numCarton = numCarton;
@@ -22,6 +22,10 @@ public final class clsCarton extends Thread {
 
     public int getNumCarton() {
         return numCarton;
+    }
+
+    public void setNumCarton(int numCarton) {
+        this.numCarton = numCarton;
     }
    
     
@@ -47,26 +51,5 @@ public final class clsCarton extends Thread {
     public void setNumeros(int[][] numeros) {
         this.numeros = numeros;
     }
-
     
-    
-    public boolean isDisponible() {
-        return persona == null;
-    }
-    
-    public String getEstado(){
-        if(this.isDisponible()){
-           return "DISPONIBLE"; 
-        }
-        
-        return "VENDIDO";
-    }
-    
-    public clsPersona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(clsPersona persona) {
-        this.persona = persona;
-    }
 }
