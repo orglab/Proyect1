@@ -1011,6 +1011,11 @@ public class frmBingo extends javax.swing.JFrame {
         jMenu1.setText("Archivo");
 
         jMenuItem5.setText("Salir");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -1021,9 +1026,19 @@ public class frmBingo extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Generar Cartones");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Vender Cartones");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Comenzar Juego");
@@ -1189,6 +1204,34 @@ public class frmBingo extends javax.swing.JFrame {
         // TODO add your handling code here:
         mostrarDatosPersona(10);
     }//GEN-LAST:event_btnDatosCliente10ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        frmComprarCarton ventanaComprar = new frmComprarCarton(this, true);
+        ventanaComprar.setVistaBingo(this);
+        ventanaComprar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        bingo1.setModel(llenarBingos(0, bingo1));
+        bingo2.setModel(llenarBingos(1, bingo2));
+        bingo3.setModel(llenarBingos(2, bingo3));
+        bingo4.setModel(llenarBingos(3, bingo4));
+        bingo5.setModel(llenarBingos(4, bingo5));
+        bingo6.setModel(llenarBingos(5, bingo6));
+        bingo7.setModel(llenarBingos(6, bingo7));
+        bingo8.setModel(llenarBingos(7, bingo8));
+        bingo9.setModel(llenarBingos(8, bingo9));
+        bingo10.setModel(llenarBingos(9, bingo10));
+        btnGenerarCar.setEnabled(false);
+        bolita.start();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
