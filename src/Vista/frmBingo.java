@@ -111,6 +111,8 @@ public class frmBingo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBolitas = new javax.swing.JTable();
+        btnComenzarJuego = new javax.swing.JButton();
+        btnGenerarBolita = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -944,6 +946,7 @@ public class frmBingo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnGenerarCar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/bingo.png"))); // NOI18N
         btnGenerarCar.setText("Generar Cartones");
         btnGenerarCar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -951,6 +954,7 @@ public class frmBingo extends javax.swing.JFrame {
             }
         });
 
+        btnVenderCarton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/VenderCarton.png"))); // NOI18N
         btnVenderCarton.setText("Vender Cartón");
         btnVenderCarton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -959,6 +963,8 @@ public class frmBingo extends javax.swing.JFrame {
         });
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Tico Bingo logo.jpg"))); // NOI18N
+
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
 
         tblBolitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1004,9 +1010,21 @@ public class frmBingo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnComenzarJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Comenzar.png"))); // NOI18N
+        btnComenzarJuego.setText("Comenzar Juego");
+        btnComenzarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComenzarJuegoActionPerformed(evt);
+            }
+        });
+
+        btnGenerarBolita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/GenerarBolita.png"))); // NOI18N
+        btnGenerarBolita.setText("Generar Bolita");
+        btnGenerarBolita.setEnabled(false);
 
         jMenu1.setText("Archivo");
 
@@ -1042,6 +1060,11 @@ public class frmBingo extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Comenzar Juego");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -1078,9 +1101,11 @@ public class frmBingo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnGenerarCar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnVenderCarton))
+                                .addComponent(btnGenerarCar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVenderCarton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnComenzarJuego))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1088,8 +1113,13 @@ public class frmBingo extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(254, 254, 254))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1100,8 +1130,9 @@ public class frmBingo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(86, 86, 86)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnGenerarCar)
-                                    .addComponent(btnVenderCarton)))
+                                    .addComponent(btnGenerarCar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnVenderCarton)
+                                    .addComponent(btnComenzarJuego)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel11)))
@@ -1126,11 +1157,14 @@ public class frmBingo extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -1206,7 +1240,6 @@ public class frmBingo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDatosCliente10ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
         frmComprarCarton ventanaComprar = new frmComprarCarton(this, true);
         ventanaComprar.setVistaBingo(this);
         ventanaComprar.setVisible(true);
@@ -1232,6 +1265,14 @@ public class frmBingo extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void btnComenzarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarJuegoActionPerformed
+        btnGenerarBolita.setEnabled(true);
+    }//GEN-LAST:event_btnComenzarJuegoActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        btnGenerarBolita.setEnabled(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1277,6 +1318,7 @@ public class frmBingo extends javax.swing.JFrame {
     private javax.swing.JTable bingo7;
     private javax.swing.JTable bingo8;
     private javax.swing.JTable bingo9;
+    private javax.swing.JButton btnComenzarJuego;
     private javax.swing.JButton btnDatosCliente1;
     private javax.swing.JButton btnDatosCliente10;
     private javax.swing.JButton btnDatosCliente2;
@@ -1287,6 +1329,7 @@ public class frmBingo extends javax.swing.JFrame {
     private javax.swing.JButton btnDatosCliente7;
     private javax.swing.JButton btnDatosCliente8;
     private javax.swing.JButton btnDatosCliente9;
+    private javax.swing.JButton btnGenerarBolita;
     private javax.swing.JButton btnGenerarCar;
     private javax.swing.JButton btnVenderCarton;
     private javax.swing.JLabel jLabel1;
