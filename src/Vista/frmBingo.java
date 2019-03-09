@@ -7,6 +7,7 @@ package Vista;
 
 import Logica.clsCarton;
 import Datos.BingoDatos;
+import Logica.clsBolitas;
 import Logica.clsPersona;
 import javafx.scene.input.KeyCode;
 import static javafx.scene.input.KeyCode.O;
@@ -23,13 +24,15 @@ public class frmBingo extends javax.swing.JFrame {
     Object persona[] = new Object[10];
     BingoDatos bingoDatos;
     DefaultTableModel bingoModel;
-    
+    clsBolitas bolita;
+
     /**
      * Creates new form frmBingo
      */
     public frmBingo() {
         initComponents();
         bingoDatos = new BingoDatos();
+        bolita = new clsBolitas(this);
     }
 
     /**
@@ -104,6 +107,9 @@ public class frmBingo extends javax.swing.JFrame {
         btnGenerarCar = new javax.swing.JButton();
         btnVenderCarton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBolitas = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -144,7 +150,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo1.setCellSelectionEnabled(true);
         bingo1.setGridColor(new java.awt.Color(0, 0, 0));
         bingo1.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo1.setShowGrid(true);
         bingo1.getTableHeader().setResizingAllowed(false);
         bingo1.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(bingo1);
@@ -226,7 +231,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo2.setCellSelectionEnabled(true);
         bingo2.setGridColor(new java.awt.Color(0, 0, 0));
         bingo2.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo2.setShowGrid(true);
         bingo2.getTableHeader().setResizingAllowed(false);
         bingo2.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(bingo2);
@@ -308,7 +312,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo3.setCellSelectionEnabled(true);
         bingo3.setGridColor(new java.awt.Color(0, 0, 0));
         bingo3.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo3.setShowGrid(true);
         bingo3.getTableHeader().setResizingAllowed(false);
         bingo3.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(bingo3);
@@ -385,7 +388,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo4.setCellSelectionEnabled(true);
         bingo4.setGridColor(new java.awt.Color(0, 0, 0));
         bingo4.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo4.setShowGrid(true);
         bingo4.getTableHeader().setResizingAllowed(false);
         bingo4.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(bingo4);
@@ -462,7 +464,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo5.setCellSelectionEnabled(true);
         bingo5.setGridColor(new java.awt.Color(0, 0, 0));
         bingo5.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo5.setShowGrid(true);
         bingo5.getTableHeader().setResizingAllowed(false);
         bingo5.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(bingo5);
@@ -539,7 +540,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo6.setCellSelectionEnabled(true);
         bingo6.setGridColor(new java.awt.Color(0, 0, 0));
         bingo6.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo6.setShowGrid(true);
         bingo6.getTableHeader().setResizingAllowed(false);
         bingo6.getTableHeader().setReorderingAllowed(false);
         jScrollPane8.setViewportView(bingo6);
@@ -616,7 +616,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo7.setCellSelectionEnabled(true);
         bingo7.setGridColor(new java.awt.Color(0, 0, 0));
         bingo7.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo7.setShowGrid(true);
         bingo7.getTableHeader().setResizingAllowed(false);
         bingo7.getTableHeader().setReorderingAllowed(false);
         jScrollPane9.setViewportView(bingo7);
@@ -693,7 +692,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo8.setCellSelectionEnabled(true);
         bingo8.setGridColor(new java.awt.Color(0, 0, 0));
         bingo8.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo8.setShowGrid(true);
         bingo8.getTableHeader().setResizingAllowed(false);
         bingo8.getTableHeader().setReorderingAllowed(false);
         jScrollPane10.setViewportView(bingo8);
@@ -770,7 +768,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo9.setCellSelectionEnabled(true);
         bingo9.setGridColor(new java.awt.Color(0, 0, 0));
         bingo9.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo9.setShowGrid(true);
         bingo9.getTableHeader().setResizingAllowed(false);
         bingo9.getTableHeader().setReorderingAllowed(false);
         jScrollPane11.setViewportView(bingo9);
@@ -847,7 +844,6 @@ public class frmBingo extends javax.swing.JFrame {
         bingo10.setCellSelectionEnabled(true);
         bingo10.setGridColor(new java.awt.Color(0, 0, 0));
         bingo10.setPreferredSize(new java.awt.Dimension(100, 100));
-        bingo10.setShowGrid(true);
         bingo10.getTableHeader().setResizingAllowed(false);
         bingo10.getTableHeader().setReorderingAllowed(false);
         jScrollPane12.setViewportView(bingo10);
@@ -911,6 +907,53 @@ public class frmBingo extends javax.swing.JFrame {
         });
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Tico Bingo logo.jpg"))); // NOI18N
+
+        tblBolitas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "B", "O", "L", "A"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblBolitas);
+        if (tblBolitas.getColumnModel().getColumnCount() > 0) {
+            tblBolitas.getColumnModel().getColumn(0).setResizable(false);
+            tblBolitas.getColumnModel().getColumn(1).setResizable(false);
+            tblBolitas.getColumnModel().getColumn(2).setResizable(false);
+            tblBolitas.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("Archivo");
 
@@ -991,43 +1034,50 @@ public class frmBingo extends javax.swing.JFrame {
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGenerarCar)
-                            .addComponent(btnVenderCarton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel11)))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnGenerarCar)
+                                    .addComponent(btnVenderCarton)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel11)))
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
@@ -1044,13 +1094,14 @@ public class frmBingo extends javax.swing.JFrame {
         bingo7.setModel(llenarBingos(6, bingo7));
         bingo8.setModel(llenarBingos(7, bingo8));
         bingo9.setModel(llenarBingos(8, bingo9));
-        bingo10.setModel(llenarBingos(9,bingo10));
+        bingo10.setModel(llenarBingos(9, bingo10));
         btnGenerarCar.setEnabled(false);
+        bolita.start();
     }//GEN-LAST:event_btnGenerarCarActionPerformed
 
     private void btnDatosCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente1ActionPerformed
         this.cargarDatosCliente(bingoDatos.getCartones()[0]);
-        
+
     }//GEN-LAST:event_btnDatosCliente1ActionPerformed
 
     private void btnDatosCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente2ActionPerformed
@@ -1152,6 +1203,7 @@ public class frmBingo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
@@ -1162,6 +1214,7 @@ public class frmBingo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -1182,6 +1235,7 @@ public class frmBingo extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado7;
     private javax.swing.JLabel lblEstado8;
     private javax.swing.JLabel lblEstado9;
+    private javax.swing.JTable tblBolitas;
     // End of variables declaration//GEN-END:variables
 
     private synchronized TableModel llenarBingos(int numBingo, JTable table) {
@@ -1191,13 +1245,25 @@ public class frmBingo extends javax.swing.JFrame {
         for (int columna = 0; columna < 5; columna++) {
             for (int fila = 0; fila < 5; fila++) {
                 vectData[fila] = bingo[fila][columna];
+                if (fila == 2 && columna == 2) {
+                    vectData[fila] = "**";
+                }
+
             }
             bingoModel.addRow(vectData);
         }
         return bingoModel;
     }
-    
-    private void cargarDatosCliente(clsCarton carton){
+
+    public void sacarBola(int bolita) {
+        Object vectData[] = new Object[1];;
+        bingoModel = (DefaultTableModel) tblBolitas.getModel();
+        vectData[0] = bolita;
+        bingoModel.addRow(vectData);
+        tblBolitas.setModel(bingoModel);
+    }
+
+    private void cargarDatosCliente(clsCarton carton) {
         frmDatosCliente detalleCliente = new frmDatosCliente(this, true);
         detalleCliente.setCarton(carton);
         detalleCliente.setVisible(true);
