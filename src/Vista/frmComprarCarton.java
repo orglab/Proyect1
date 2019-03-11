@@ -26,6 +26,9 @@ public class frmComprarCarton extends javax.swing.JDialog {
 
     /**
      * Creates new form frmVenderCarton
+     *
+     * @param parent
+     * @param modal
      */
     public frmComprarCarton(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -212,7 +215,6 @@ public class frmComprarCarton extends javax.swing.JDialog {
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         char tecla = evt.getKeyChar();
-
         if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACKSPACE) {
             evt.consume();
         }
@@ -249,8 +251,6 @@ public class frmComprarCarton extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(frmComprarCarton.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -27,7 +27,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     BingoDatos bingoDatos = new BingoDatos();
     DefaultTableModel bingoModel;
-    clsBolitas bolita;
+    clsBolitas bolita= new clsBolitas(this);
     CartonesVendidos almacenaCarton = new CartonesVendidos(10);
     Datos.DatosPersona almacenaPersona = new DatosPersona(10);
     clsCarton crtObj;
