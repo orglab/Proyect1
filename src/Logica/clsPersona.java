@@ -10,18 +10,24 @@ package Logica;
  * @author Manyor
  */
 public class clsPersona {
+
     private String nombre;
     private String apellido;
     private int cedula;
     private int telefono;
-    private int numCarton;
-    
-       public clsPersona() {
-        this.numCarton = 0;
+
+    public clsPersona() {
         this.nombre = null;
         this.apellido = null;
         this.cedula = 0;
         this.telefono = 0;
+    }
+
+    public clsPersona(String nombre, String apellido, int cedula, int telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.telefono = telefono;
     }
 
     public String getNombre() {
@@ -55,12 +61,5 @@ public class clsPersona {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
-    public int getNumCarton() {
-        return numCarton;
-    }
 
-    public void setNumCarton(int numCarton) {
-        this.numCarton = numCarton;
-    }
 }

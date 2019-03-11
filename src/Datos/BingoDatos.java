@@ -14,16 +14,11 @@ import Logica.clsCarton;
 public class BingoDatos {
 
     private int[][][] bingo = new int[10][5][5];
-    private clsCarton[] cartones = new clsCarton[10];
-    
+
     public BingoDatos() {
         generarBingo();
     }
 
-    public clsCarton[] getCartones() {
-        return cartones;
-    }
-    
     public int[][] getBingo(int numBingo) {
         return getCartonBingo(numBingo);
     }
@@ -55,9 +50,6 @@ public class BingoDatos {
                     }
                 }
             }
-            clsCarton carton = new clsCarton(numMatriz + 1);
-            carton.setNumeros(this.getBingo(numMatriz));
-            cartones[numMatriz] = carton;
         }
         return bingo;
 
