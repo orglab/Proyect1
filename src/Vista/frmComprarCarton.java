@@ -5,11 +5,12 @@
  */
 package Vista;
 
-import Datos.BingoDatos;
+import Datos.CartonesVendidos;
+import Datos.DatosPersona;
 import Logica.clsCarton;
 import Logica.clsPersona;
 import com.sun.glass.events.KeyEvent;
-import javax.swing.JFrame;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,11 @@ import javax.swing.JOptionPane;
  * @author JJGB
  */
 public class frmComprarCarton extends javax.swing.JDialog {
+
+    CartonesVendidos almacenaCarton;
+    DatosPersona dataPersona;
+    clsCarton crtObj = new clsCarton();
+    clsPersona personaObj = new clsPersona();
 
     /**
      * Creates new form frmVenderCarton
@@ -27,10 +33,11 @@ public class frmComprarCarton extends javax.swing.JDialog {
 
     }
 
-    frmBingo vistaBingo;
-
-    public void setVistaBingo(frmBingo vistaBingo) {
-        this.vistaBingo = vistaBingo;
+    public frmComprarCarton(java.awt.Frame parent, boolean modal, CartonesVendidos almacenCarton, DatosPersona almacenaPersona) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaCarton = almacenCarton;
+        this.dataPersona = almacenaPersona;
     }
 
     /**
@@ -53,10 +60,15 @@ public class frmComprarCarton extends javax.swing.JDialog {
         txtApellidos = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        txtNumCarton = new javax.swing.JTextField();
+        cmbNumCartones = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Comprar Cartón");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Nombre");
 
@@ -94,12 +106,6 @@ public class frmComprarCarton extends javax.swing.JDialog {
             }
         });
 
-        txtNumCarton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumCartonKeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +115,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                         .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addComponent(btnReservar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +124,9 @@ public class frmComprarCarton extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumCarton)
                             .addComponent(txtNombre)
-                            .addComponent(txtApellidos)))
+                            .addComponent(txtApellidos)
+                            .addComponent(cmbNumCartones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -137,7 +143,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtNumCarton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbNumCartones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -154,7 +160,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReservar)
                     .addComponent(btnLimpiar))
@@ -182,46 +188,19 @@ public class frmComprarCarton extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "El campo Teléfono es requerido");
             return;
         }
-        if (txtNumCarton.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "El campo Cartón # es requerido");
-            return;
-        }
 
-        int numCarton = Integer.parseInt(txtNumCarton.getText());
+        asignarCartonPersona(Integer.parseInt(cmbNumCartones.getSelectedItem().toString()), txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtCedula.getText()), Integer.parseInt(txtTelefono.getText()));
 
-        if (numCarton > 10 || numCarton < 1) {
-            JOptionPane.showMessageDialog(rootPane, "El campo Cartón # debe ser entre 1 y 10");
-            return;
-        }
-        if (!vistaBingo.isCartonDisponible(numCarton)) {
-            JOptionPane.showMessageDialog(rootPane, "Ese numero de cartón se encuentra vendido");
-            return;
-        }
-        clsPersona persona = new clsPersona();
 
-        persona.setNumCarton(numCarton);
-        persona.setNombre(txtNombre.getText());
-        persona.setApellido(txtApellidos.getText());
-        persona.setTelefono(Integer.parseInt(txtTelefono.getText()));
-        persona.setCedula(Integer.parseInt(txtCedula.getText()));
-        vistaBingo.comprarCarton(persona);
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        txtNumCarton.setText(null);
+        cmbNumCartones.removeAllItems();
         txtNombre.setText(null);
         txtApellidos.setText(null);
         txtCedula.setText(null);
         txtTelefono.setText(null);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void txtNumCartonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumCartonKeyTyped
-        char tecla = evt.getKeyChar();
-
-        if (!Character.isDigit(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACKSPACE) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtNumCartonKeyTyped
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char tecla = evt.getKeyChar();
@@ -238,6 +217,11 @@ public class frmComprarCarton extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        cargaCMB();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -285,6 +269,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnReservar;
+    private javax.swing.JComboBox<String> cmbNumCartones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,8 +278,48 @@ public class frmComprarCarton extends javax.swing.JDialog {
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNumCarton;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
+    public void cargaCMB() {
+        DefaultComboBoxModel comboModelo = (DefaultComboBoxModel) cmbNumCartones.getModel();
+
+        for (int i = 0; i < almacenaCarton.getNumRegs(); i++) {
+            crtObj = almacenaCarton.getRegistro(i);
+            if (!almacenaCarton.getRegistro(i).isEstado()) {
+                Object nuevaFila[] = {crtObj.getNumCarton()};
+                comboModelo.addElement(nuevaFila[0]);
+            }
+        }
+        cmbNumCartones.setModel(comboModelo);
+
+    }
+
+    private void asignarCartonPersona(int numBingo, String nombre, String apellidos, int cedula, int telefono) {
+
+        insertarPersona(nombre, apellidos, cedula, telefono);
+        clsCarton crtObjs = new clsCarton(almacenaCarton.getRegistro(numBingo).getNumCarton(), almacenaCarton.getRegistro(numBingo).getNumeros(), true, dataPersona.getRegistro(cedula));
+
+        if (almacenaCarton.editaPelicula(numBingo, crtObjs)) {
+            System.out.println(cedula);
+            JOptionPane.showMessageDialog(rootPane, "Carton " + numBingo + " vendido");
+            this.dispose();
+        } else {
+            System.out.println("Problema en Vista.frmComprarCarton.asignarCartonPersona()");
+        }
+
+    }
+
+    private void insertarPersona(String nombre, String apellido, int cedula, int telefono) {
+        personaObj = new clsPersona(nombre, apellido, cedula, telefono);
+
+        if (!dataPersona.alreadyExist(cedula)) {
+            if (dataPersona.insertPersona(personaObj)) {
+                System.out.println("Persona es registrada en el sistema");
+            }
+        } else {
+            System.out.println("Persona ya registrada en el sistema, será asignada al carton");
+        }
+
+    }
 }

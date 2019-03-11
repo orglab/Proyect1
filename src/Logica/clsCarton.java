@@ -9,16 +9,12 @@ package Logica;
  *
  * @author Manyor
  */
-public final class clsCarton extends Thread {
+public final class clsCarton {
 
-    private boolean continuar = true; //flag para saber si continua el procedimiento
     private int numCarton;
     private int[][] numeros;
-    
-
-    public clsCarton(int numCarton) {
-        this.numCarton = numCarton;
-    }
+    private boolean estado;
+    clsPersona persona;
 
     public int getNumCarton() {
         return numCarton;
@@ -26,22 +22,6 @@ public final class clsCarton extends Thread {
 
     public void setNumCarton(int numCarton) {
         this.numCarton = numCarton;
-    }
-   
-    
-    public void validarCarton() {
-    }
-
-    public Object[][] llenarCarton(Object[][][] matriz) {
-
-        return null;
-    }
-
-    @Override //se sobrescribe el método run
-    public void run() {
-        while (continuar) {   //hágase mientras continuar sea verdadero
-
-        }
     }
 
     public int[][] getNumeros() {
@@ -51,5 +31,38 @@ public final class clsCarton extends Thread {
     public void setNumeros(int[][] numeros) {
         this.numeros = numeros;
     }
-    
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public clsPersona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(clsPersona persona) {
+        this.persona = persona;
+    }
+
+    public clsCarton(int numCarton, int[][] numeros, boolean estado, clsPersona persona) {
+        this.numCarton = numCarton;
+        this.numeros = numeros;
+        this.estado = estado;
+        this.persona = persona;
+    }
+
+    public clsCarton(int numCarton, int[][] numeros, boolean estado) {
+        this.numCarton = numCarton;
+        this.numeros = numeros;
+        this.estado = estado;
+    }
+
+    public clsCarton() {
+
+    }
+
 }

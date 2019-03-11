@@ -335,10 +335,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="0" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente1ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -470,10 +468,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="1" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente2ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -605,10 +601,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="2" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente3ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -740,10 +734,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="3" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente4ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -875,10 +867,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="4" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente5ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1010,10 +1000,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="5" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente6ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1145,10 +1133,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="6" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente7ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1193,7 +1179,7 @@
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblEstado8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="30" max="32767" attributes="0"/>
                   <Component id="btnDatosCliente8" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -1281,10 +1267,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="7" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente8ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1416,10 +1400,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="8" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente9ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1551,10 +1533,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datos del Cliente"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="9" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente10ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1688,6 +1668,9 @@
         <Property name="text" type="java.lang.String" value="Generar Bolita"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarBolitaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

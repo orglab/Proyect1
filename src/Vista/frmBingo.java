@@ -7,11 +7,14 @@ package Vista;
 
 import Logica.clsCarton;
 import Datos.BingoDatos;
+import Datos.CartonesVendidos;
+import Datos.DatosPersona;
 import Logica.clsBolitas;
 import Logica.clsPersona;
-import java.util.ArrayList;
-import javafx.scene.input.KeyCode;
-import static javafx.scene.input.KeyCode.O;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -20,20 +23,29 @@ import javax.swing.table.TableModel;
  *
  * @author Manyor
  */
-public class frmBingo extends javax.swing.JFrame {
+public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
-    private ArrayList<clsPersona> personas = new ArrayList<clsPersona>();
-    BingoDatos bingoDatos;
+    BingoDatos bingoDatos = new BingoDatos();
     DefaultTableModel bingoModel;
     clsBolitas bolita;
+    CartonesVendidos almacenaCarton = new CartonesVendidos(10);
+    Datos.DatosPersona almacenaPersona = new DatosPersona(10);
+    clsCarton crtObj;
+
+    JTable tableList[];
+    JLabel lableList[];
+    JButton jbuttonList[];
 
     /**
      * Creates new form frmBingo
      */
     public frmBingo() {
+
         initComponents();
-        bingoDatos = new BingoDatos();
-        bolita = new clsBolitas(this);
+        this.tableList = new JTable[]{bingo1, bingo2, bingo3, bingo4, bingo5, bingo6, bingo7, bingo8, bingo9, bingo10};
+        this.lableList = new JLabel[]{lblEstado1, lblEstado2, lblEstado3, lblEstado4, lblEstado5, lblEstado6, lblEstado7, lblEstado8, lblEstado9, lblEstado10};
+        this.jbuttonList = new JButton[]{btnDatosCliente1, btnDatosCliente2, btnDatosCliente3, btnDatosCliente4, btnDatosCliente5, btnDatosCliente6, btnDatosCliente7, btnDatosCliente8, btnDatosCliente9, btnDatosCliente10};
+        AgregarListener();
     }
 
     /**
@@ -171,11 +183,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente1.setText("Datos del Cliente");
         btnDatosCliente1.setEnabled(false);
-        btnDatosCliente1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente1ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente1.setName("0"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -253,11 +261,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente2.setText("Datos del Cliente");
         btnDatosCliente2.setEnabled(false);
-        btnDatosCliente2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente2ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente2.setName("1"); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -335,11 +339,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente3.setText("Datos del Cliente");
         btnDatosCliente3.setEnabled(false);
-        btnDatosCliente3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente3ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente3.setName("2"); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -417,11 +417,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente4.setText("Datos del Cliente");
         btnDatosCliente4.setEnabled(false);
-        btnDatosCliente4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente4ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente4.setName("3"); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -499,11 +495,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente5.setText("Datos del Cliente");
         btnDatosCliente5.setEnabled(false);
-        btnDatosCliente5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente5ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente5.setName("4"); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -581,11 +573,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente6.setText("Datos del Cliente");
         btnDatosCliente6.setEnabled(false);
-        btnDatosCliente6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente6ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente6.setName("5"); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -663,11 +651,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente7.setText("Datos del Cliente");
         btnDatosCliente7.setEnabled(false);
-        btnDatosCliente7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente7ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente7.setName("6"); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -745,11 +729,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente8.setText("Datos del Cliente");
         btnDatosCliente8.setEnabled(false);
-        btnDatosCliente8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente8ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente8.setName("7"); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -778,7 +758,7 @@ public class frmBingo extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lblEstado8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 30, Short.MAX_VALUE)
                 .addComponent(btnDatosCliente8))
         );
 
@@ -828,11 +808,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente9.setText("Datos del Cliente");
         btnDatosCliente9.setEnabled(false);
-        btnDatosCliente9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente9ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente9.setName("8"); // NOI18N
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -910,11 +886,7 @@ public class frmBingo extends javax.swing.JFrame {
 
         btnDatosCliente10.setText("Datos del Cliente");
         btnDatosCliente10.setEnabled(false);
-        btnDatosCliente10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDatosCliente10ActionPerformed(evt);
-            }
-        });
+        btnDatosCliente10.setName("9"); // NOI18N
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1025,6 +997,11 @@ public class frmBingo extends javax.swing.JFrame {
         btnGenerarBolita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/GenerarBolita.png"))); // NOI18N
         btnGenerarBolita.setText("Generar Bolita");
         btnGenerarBolita.setEnabled(false);
+        btnGenerarBolita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarBolitaActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Archivo");
 
@@ -1172,76 +1149,28 @@ public class frmBingo extends javax.swing.JFrame {
 
     private void btnGenerarCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarCarActionPerformed
         // TODO add your handling code here:
-        bingo1.setModel(llenarBingos(0, bingo1));
-        bingo2.setModel(llenarBingos(1, bingo2));
-        bingo3.setModel(llenarBingos(2, bingo3));
-        bingo4.setModel(llenarBingos(3, bingo4));
-        bingo5.setModel(llenarBingos(4, bingo5));
-        bingo6.setModel(llenarBingos(5, bingo6));
-        bingo7.setModel(llenarBingos(6, bingo7));
-        bingo8.setModel(llenarBingos(7, bingo8));
-        bingo9.setModel(llenarBingos(8, bingo9));
-        bingo10.setModel(llenarBingos(9, bingo10));
+
+        for (int i = 0; i < tableList.length; i++) {
+            tableList[i].setModel(llenarBingos(i, tableList[i]));
+        }
+
         btnGenerarCar.setEnabled(false);
-        bolita.start();
+
     }//GEN-LAST:event_btnGenerarCarActionPerformed
-
-    private void btnDatosCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente1ActionPerformed
-        mostrarDatosPersona(1);
-    }//GEN-LAST:event_btnDatosCliente1ActionPerformed
-
-    private void btnDatosCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente2ActionPerformed
-        mostrarDatosPersona(2);
-    }//GEN-LAST:event_btnDatosCliente2ActionPerformed
 
     private void btnVenderCartonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderCartonActionPerformed
         // TODO add your handling code here:
-        frmComprarCarton ventanaComprar = new frmComprarCarton(this, true);
-        ventanaComprar.setVistaBingo(this);
+        frmComprarCarton ventanaComprar = new frmComprarCarton(this, true, this.almacenaCarton, this.almacenaPersona);
         ventanaComprar.setVisible(true);
+        almacenaCarton = ventanaComprar.almacenaCarton;
+        almacenaPersona = ventanaComprar.dataPersona;
+        actualizarLabels();
+
+
     }//GEN-LAST:event_btnVenderCartonActionPerformed
-
-    private void btnDatosCliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente3ActionPerformed
-        mostrarDatosPersona(3);
-    }//GEN-LAST:event_btnDatosCliente3ActionPerformed
-
-    private void btnDatosCliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente4ActionPerformed
-        mostrarDatosPersona(4);
-    }//GEN-LAST:event_btnDatosCliente4ActionPerformed
-
-    private void btnDatosCliente5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente5ActionPerformed
-        // TODO add your handling code here:
-        mostrarDatosPersona(5);
-    }//GEN-LAST:event_btnDatosCliente5ActionPerformed
-
-    private void btnDatosCliente6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente6ActionPerformed
-        // TODO add your handling code here:
-        mostrarDatosPersona(6);
-    }//GEN-LAST:event_btnDatosCliente6ActionPerformed
-
-    private void btnDatosCliente7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente7ActionPerformed
-        // TODO add your handling code here:
-        mostrarDatosPersona(7);
-    }//GEN-LAST:event_btnDatosCliente7ActionPerformed
-
-    private void btnDatosCliente8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente8ActionPerformed
-        // TODO add your handling code here:
-        mostrarDatosPersona(8);
-    }//GEN-LAST:event_btnDatosCliente8ActionPerformed
-
-    private void btnDatosCliente9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente9ActionPerformed
-        // TODO add your handling code here:
-        mostrarDatosPersona(9);
-    }//GEN-LAST:event_btnDatosCliente9ActionPerformed
-
-    private void btnDatosCliente10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente10ActionPerformed
-        // TODO add your handling code here:
-        mostrarDatosPersona(10);
-    }//GEN-LAST:event_btnDatosCliente10ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         frmComprarCarton ventanaComprar = new frmComprarCarton(this, true);
-        ventanaComprar.setVistaBingo(this);
         ventanaComprar.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -1263,6 +1192,7 @@ public class frmBingo extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+
         dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -1273,6 +1203,11 @@ public class frmBingo extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         btnGenerarBolita.setEnabled(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void btnGenerarBolitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarBolitaActionPerformed
+        // TODO add your handling code here:
+        bolita.start();
+    }//GEN-LAST:event_btnGenerarBolitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1387,6 +1322,7 @@ public class frmBingo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private synchronized TableModel llenarBingos(int numBingo, JTable table) {
+        table.setEnabled(false);
         bingoModel = (DefaultTableModel) table.getModel();
         int bingo[][] = bingoDatos.getBingo(numBingo);
         Object vectData[] = new Object[5];
@@ -1396,10 +1332,12 @@ public class frmBingo extends javax.swing.JFrame {
                 if (fila == 2 && columna == 2) {
                     vectData[fila] = "**";
                 }
-
             }
+
             bingoModel.addRow(vectData);
         }
+        insertarCartonBingo(numBingo, bingo, null);
+
         return bingoModel;
     }
 
@@ -1411,80 +1349,44 @@ public class frmBingo extends javax.swing.JFrame {
         tblBolitas.setModel(bingoModel);
     }
 
-    public void comprarCarton(clsPersona persona) {
-        personas.add(persona);
-        String estado = "VENDIDO";
-        switch (persona.getNumCarton()) {
-            case 1:
-                lblEstado1.setText(estado);
-                btnDatosCliente1.setEnabled(true);
-                break;
-            case 2:
-                lblEstado2.setText(estado);
-                btnDatosCliente2.setEnabled(true);
-                break;
-            case 3:
-                lblEstado3.setText(estado);
-                btnDatosCliente3.setEnabled(true);
-                break;
-            case 4:
-                lblEstado4.setText(estado);
-                btnDatosCliente4.setEnabled(true);
-                break;
-            case 5:
-                lblEstado5.setText(estado);
-                btnDatosCliente5.setEnabled(true);
-                break;
-            case 6:
-                lblEstado6.setText(estado);
-                btnDatosCliente6.setEnabled(true);
-                break;
-            case 7:
-                lblEstado7.setText(estado);
-                btnDatosCliente7.setEnabled(true);
-                break;
-            case 8:
-                lblEstado8.setText(estado);
-                btnDatosCliente8.setEnabled(true);
-                break;
-            case 9:
-                lblEstado9.setText(estado);
-                btnDatosCliente9.setEnabled(true);
-                break;
-            case 10:
-                lblEstado10.setText(estado);
-                btnDatosCliente10.setEnabled(true);
-                break;
+    private void insertarCartonBingo(int numBingo, int[][] bingo, clsPersona persona) {
+        System.out.println("bingo");
+        crtObj = new clsCarton(numBingo, bingo, false, null);
+
+        if (almacenaCarton.insertCarton(crtObj)) {
+            System.out.println("INSERTARDO BINGO " + numBingo);
         }
+
     }
 
-    public boolean isCartonDisponible(int numCarton) {
-        for (int i = 0; i < personas.size(); i++) {
-            clsPersona persona = personas.get(i);
+    private void mostrarDatosPersona(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-            if (persona.getNumCarton() == numCarton) {
-                return false;
+    private void actualizarLabels() {
+        for (int i = 0; i < lableList.length; i++) {
+            if (almacenaCarton.getRegistro(i).isEstado()) {
+                lableList[i].setText("VENDIDO");
+                tableList[i].setEnabled(true);
+                jbuttonList[i].setEnabled(true);
             }
         }
 
-        return true;
     }
 
-    private clsPersona buscarPersonaPorNumCarton(int numCarton) {
-        for (int i = 0; i < personas.size(); i++) {
-            clsPersona persona = personas.get(i);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton button = (JButton) e.getSource();
+        clsCarton obj = almacenaCarton.getRegistro(Integer.parseInt(button.getName()));
+        frmDatosCliente datosCliente = new frmDatosCliente(this, true, obj);
+        datosCliente.setVisible(true);
+    }
 
-            if (persona.getNumCarton() == numCarton) {
-                return persona;
-            }
+    private void AgregarListener() {
+        for (JButton jbuttonList1 : jbuttonList) {
+            jbuttonList1.addActionListener(this);
         }
-        return null;
+
     }
-    
-    private void mostrarDatosPersona(int numCarton){
-        clsPersona persona = buscarPersonaPorNumCarton(numCarton);
-        frmDatosCliente ventanaDatos = new frmDatosCliente(this, true);
-        ventanaDatos.cargarDatosCliente(persona);
-        ventanaDatos.setVisible(true);
-    }
+
 }
