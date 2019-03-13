@@ -5,6 +5,8 @@
  */
 package Logica;
 
+import java.util.Date;
+
 /**
  *
  * @author Manyor
@@ -14,7 +16,41 @@ public final class clsCarton {
     private int numCarton;
     private int[][] numeros;
     private boolean estado;
+    private Date fecha;
+
     clsPersona persona;
+
+    clsCarton(int numCarton, boolean estado, Date fecha, clsPersona persona) {
+        this.numCarton = numCarton;
+        this.estado = estado;
+        this.persona = persona;
+        this.fecha = fecha;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public clsCarton(int numCarton, int[][] numeros, boolean estado, clsPersona persona) {
+        this.numCarton = numCarton;
+        this.numeros = numeros;
+        this.estado = estado;
+        this.persona = persona;
+    }
+
+    public clsCarton(int numCarton, int[][] numeros, boolean estado) {
+        this.numCarton = numCarton;
+        this.numeros = numeros;
+        this.estado = estado;
+    }
+
+    public clsCarton() {
+
+    }
 
     public int getNumCarton() {
         return numCarton;
@@ -46,23 +82,6 @@ public final class clsCarton {
 
     public void setPersona(clsPersona persona) {
         this.persona = persona;
-    }
-
-    public clsCarton(int numCarton, int[][] numeros, boolean estado, clsPersona persona) {
-        this.numCarton = numCarton;
-        this.numeros = numeros;
-        this.estado = estado;
-        this.persona = persona;
-    }
-
-    public clsCarton(int numCarton, int[][] numeros, boolean estado) {
-        this.numCarton = numCarton;
-        this.numeros = numeros;
-        this.estado = estado;
-    }
-
-    public clsCarton() {
-
     }
 
 }

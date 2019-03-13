@@ -9,17 +9,18 @@ import Logica.clsCarton;
 import Datos.BingoDatos;
 import Datos.CartonesVendidos;
 import Datos.DatosPersona;
+import Logica.OperacionArchivo;
 import Logica.clsBolitas;
 import Logica.clsPersona;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -1180,6 +1181,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
         frmComprarCarton ventanaComprar = new frmComprarCarton(this, true, this.almacenaCarton, this.almacenaPersona);
         ventanaComprar.setVisible(true);
+
         almacenaCarton = ventanaComprar.almacenaCarton;
         almacenaPersona = ventanaComprar.dataPersona;
         actualizarLabels();
@@ -1371,6 +1373,9 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 if (validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i]) || (validarEsquinas(tableList[i]))) {
                     tableList[i].setBackground(Color.GREEN);
                     JOptionPane.showMessageDialog(this, "Cartón GANADOR " + (i + 1));
+                    if (almacenaCarton.getRegistro(i).isEstado()) {
+                        guardarRegistroGanador(almacenaCarton.getRegistro(i));
+                    }
                     return true;
                 }
 
@@ -1418,7 +1423,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
             for (int j = 0; j < 5; j++) {
                 if (table.getValueAt(i, j) == tblBolitas.getValueAt(tblBolitas.getRowCount() - 1, 0)) {
                     table.getModel().setValueAt("▓", i, j);
-                    System.out.println("j " + j);
                 }
             }
 
@@ -1485,25 +1489,30 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         return false;
 
     }
-    
-      private boolean validarEsquinas(JTable table) {
+
+    private boolean validarEsquinas(JTable table) {
         int esquina = 0;
-                if (table.getValueAt(0, 0).equals("▓")) {
-                    esquina = esquina + 1;
-                }
-                if (table.getValueAt(0, 4).equals("▓")) {
-                    esquina = esquina + 1;
-                }
-                if (table.getValueAt(4, 0).equals("▓")) {
-                    esquina = esquina + 1;
-                }
-                if (table.getValueAt(4, 4).equals("▓")) {
-                    esquina = esquina + 1;
-                }
-        if (esquina == 4 ) {
+        if (table.getValueAt(0, 0).equals("▓")) {
+            esquina = esquina + 1;
+        }
+        if (table.getValueAt(0, 4).equals("▓")) {
+            esquina = esquina + 1;
+        }
+        if (table.getValueAt(4, 0).equals("▓")) {
+            esquina = esquina + 1;
+        }
+        if (table.getValueAt(4, 4).equals("▓")) {
+            esquina = esquina + 1;
+        }
+        if (esquina == 4) {
             return true;
         }
         return false;
 
+    }
+
+    private void guardarRegistroGanador(clsCarton registro) {
+        OperacionArchivo.crearArchivo(registro);
+        
     }
 }
