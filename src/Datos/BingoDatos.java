@@ -5,8 +5,6 @@
  */
 package Datos;
 
-import Logica.clsCarton;
-
 /**
  *
  * @author Manyor
