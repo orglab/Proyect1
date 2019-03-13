@@ -40,6 +40,13 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     CartonesVendidos almacenaCarton = new CartonesVendidos(10);
     Datos.DatosPersona almacenaPersona = new DatosPersona(10);
     clsCarton crtObj;
+    
+    int miliseg;
+    int seg;
+    int min;
+    int hora;
+    boolean estado= true;
+    
 
     JTable tableList[];
     JLabel lableList[];
@@ -66,7 +73,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         this.lableList = new JLabel[]{lblEstado1, lblEstado2, lblEstado3, lblEstado4, lblEstado5, lblEstado6, lblEstado7, lblEstado8, lblEstado9, lblEstado10};
         this.jbuttonList = new JButton[]{btnDatosCliente1, btnDatosCliente2, btnDatosCliente3, btnDatosCliente4, btnDatosCliente5, btnDatosCliente6, btnDatosCliente7, btnDatosCliente8, btnDatosCliente9, btnDatosCliente10};
         AgregarListener();
-        timer.start();
+//        timer.start();
 
     }
 
@@ -148,6 +155,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         tblBolitas = new javax.swing.JTable();
         btnComenzarJuego = new javax.swing.JButton();
         btnGenerarBolita = new javax.swing.JButton();
+        lblmiliSeg = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -946,6 +954,9 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        lblTimer.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblTimer.setText("00:00:00");
+
         btnGenerarCar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/bingo.png"))); // NOI18N
         btnGenerarCar.setText("Generar Cartones");
         btnGenerarCar.addActionListener(new java.awt.event.ActionListener() {
@@ -1021,7 +1032,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         btnComenzarJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Comenzar.png"))); // NOI18N
@@ -1040,6 +1051,9 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 btnGenerarBolitaActionPerformed(evt);
             }
         });
+
+        lblmiliSeg.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblmiliSeg.setText("0000");
 
         jMenu1.setText("Archivo");
 
@@ -1120,9 +1134,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                                 .addComponent(jLabel11)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(lblTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -1136,14 +1147,19 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(157, 157, 157)
-                                        .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addComponent(lblTimer)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblmiliSeg, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(157, 157, 157)
+                                .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1152,8 +1168,10 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTimer, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                            .addComponent(lblmiliSeg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGenerarCar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnVenderCarton)
@@ -1238,6 +1256,41 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     private void btnGenerarBolitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarBolitaActionPerformed
         // TODO add your handling code here:
         bolita.start();
+        estado= true;
+        Thread cronometro = new Thread(){
+            public void run(){
+                for (;;) {
+                    if (estado == true) {
+                        try {
+                            sleep(1);
+                            if (miliseg >= 1000) {
+                                miliseg=0;
+                                seg++;
+                            }
+                            if (seg>=60) {
+                                miliseg = 0;
+                                seg=0;
+                                min++;
+                            }
+                            if (min>=60) {
+                                miliseg = 0;
+                                seg=0;
+                                min=0;
+                                hora++;
+                            }
+                            lblTimer.setText(hora + " : " +min+ " : " +seg+ " : ");
+                            lblmiliSeg.setText("" + miliseg);
+                            miliseg++;
+                        } catch (Exception e) {
+                            
+                        }
+                    }else{
+                        break;
+                    }
+                }
+            }
+        };
+        cronometro.start();
     }//GEN-LAST:event_btnGenerarBolitaActionPerformed
 
     private void tblBolitasComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblBolitasComponentMoved
@@ -1367,6 +1420,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     public javax.swing.JLabel lblEstado8;
     public javax.swing.JLabel lblEstado9;
     public javax.swing.JLabel lblTimer;
+    private javax.swing.JLabel lblmiliSeg;
     private javax.swing.JTable tblBolitas;
     // End of variables declaration//GEN-END:variables
 
@@ -1402,7 +1456,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
             for (int j = 0; j < 5; j++) {
                 if (validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i]) || (validarEsquinas(tableList[i]))) {
                     tableList[i].setBackground(Color.GREEN);
-                    timer.stop();
+                    estado = false;
                     JOptionPane.showMessageDialog(this, "Cartón GANADOR " + (i + 1));
                     if (almacenaCarton.getRegistro(i).isEstado()) {
                         guardarRegistroGanador(almacenaCarton.getRegistro(i));
