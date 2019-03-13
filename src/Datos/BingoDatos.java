@@ -52,7 +52,7 @@ public class BingoDatos {
         return bingo;
 
     }
-
+    
     private boolean validarRepetidos(int numMatriz, int fila, int columna, int num) {
         boolean flag = true;
         for (int i = 0; i < fila; i++) {
@@ -63,7 +63,7 @@ public class BingoDatos {
         }
         return flag;
     }
-
+    // Se generan los numeros aletoriamente siguiendo las condiciones para llenar los cartones
     private int generarRandom(int col) {
 
         int num = 0;

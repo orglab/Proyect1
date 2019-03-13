@@ -286,6 +286,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
+    // se carga el comboBox, y muestra los numeros de cartones disponibles
     public void cargaCMB() {
         DefaultComboBoxModel comboModelo = (DefaultComboBoxModel) cmbNumCartones.getModel();
 
@@ -305,7 +306,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
         insertarPersona(nombre, apellidos, cedula, telefono);
         clsCarton crtObjs = new clsCarton(almacenaCarton.getRegistro(numBingo).getNumCarton(), almacenaCarton.getRegistro(numBingo).getNumeros(), true, dataPersona.getRegistro(cedula));
 
-        if (almacenaCarton.editaPelicula(numBingo, crtObjs)) {
+        if (almacenaCarton.editaRegistro(numBingo, crtObjs)) {
             System.out.println(cedula);
             JOptionPane.showMessageDialog(rootPane, "Carton " + numBingo + " vendido");
             this.dispose();
@@ -314,7 +315,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
         }
 
     }
-
+    
     private void insertarPersona(String nombre, String apellido, int cedula, int telefono) {
         personaObj = new clsPersona(nombre, apellido, cedula, telefono);
 

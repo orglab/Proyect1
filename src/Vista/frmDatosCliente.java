@@ -142,7 +142,7 @@ public class frmDatosCliente extends javax.swing.JDialog {
         model.addRow(new String[]{"Cédula", String.valueOf(carton.getPersona().getCedula())});
         model.addRow(new String[]{"Nombre", carton.getPersona().getNombre()});
         model.addRow(new String[]{"Apellidos", carton.getPersona().getApellido()});
-        model.addRow(new String[]{"Telefon", String.valueOf(carton.getPersona().getTelefono())});
+        model.addRow(new String[]{"Teléfono", String.valueOf(carton.getPersona().getTelefono())});
         tblDatosCliente.setModel(model);
     }
 

@@ -37,7 +37,8 @@ public class clsBolitas extends Thread {
     public void setNumerosBingo(int[] numerosBingo) {
         this.numerosBingo = generarArrayBola();
     }
-
+    
+    //Genera las bolitas que salen conforme gira la tombola
     private int[] generarArrayBola() {
         int num = 0;
 
@@ -53,6 +54,7 @@ public class clsBolitas extends Thread {
 
     }
 
+    // Método que evita que una bolita se repita
     private boolean validarNum(int pos, int num, int[] par) {
         for (int j = 0; j < pos; j++) {
             if (num == temp[j]) {
@@ -63,6 +65,7 @@ public class clsBolitas extends Thread {
     }
 
     @Override
+    // se comienza el thread para las bolitas
     public void run() {
         try {
 

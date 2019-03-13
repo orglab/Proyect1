@@ -473,6 +473,9 @@
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="1" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosCliente2ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

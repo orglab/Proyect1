@@ -268,6 +268,11 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         btnDatosCliente2.setText("Datos del Cliente");
         btnDatosCliente2.setEnabled(false);
         btnDatosCliente2.setName("1"); // NOI18N
+        btnDatosCliente2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1185,6 +1190,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         almacenaCarton = ventanaComprar.almacenaCarton;
         almacenaPersona = ventanaComprar.dataPersona;
         actualizarLabels();
+
     }//GEN-LAST:event_btnVenderCartonActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -1226,6 +1232,11 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnDatosCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDatosCliente2ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -1368,7 +1379,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         tblBolitas.setModel(bingoModel);
         for (int i = 0; i < 10; i++) {
             checkBingo(tableList[i]);
-//validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i])
             for (int j = 0; j < 5; j++) {
                 if (validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i]) || (validarEsquinas(tableList[i]))) {
                     tableList[i].setBackground(Color.GREEN);

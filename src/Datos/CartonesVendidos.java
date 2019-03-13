@@ -45,8 +45,8 @@ public class CartonesVendidos {
     public clsCarton getRegistro(int pos) {
         return this.vect[pos];
     }
-
-    public boolean editaPelicula(int pos, clsCarton crtObj) {
+    
+    public boolean editaRegistro(int pos, clsCarton crtObj) {
         if (pos >= 0 && pos < this.numRegs) {
             this.vect[pos] = crtObj;
             return true;
