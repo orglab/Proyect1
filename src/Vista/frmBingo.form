@@ -28,6 +28,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo Juego"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
@@ -136,8 +139,8 @@
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnGenerarBolita" min="-2" pref="146" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
+                      <Component id="btnGenerarBolita" min="-2" pref="177" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -1644,6 +1647,10 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="componentMoved" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="tblBolitasComponentMoved"/>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tblBolitasPropertyChange"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -5,8 +5,6 @@
  */
 package Logica;
 
-import Vista.frmBingo;
-
 /**
  *
  * @author Manyor
@@ -45,9 +43,8 @@ public class clsBolitas extends Thread {
 
         for (int i = 0; i < 75; i++) {
             num = (int) (Math.random() * 75) + 1;
-            if (validarNum(i, num,temp)) {
+            if (validarNum(i, num, temp)) {
                 temp[i] = num;
-                System.out.println(temp[i]);
             } else {
                 i--;
             }
@@ -67,18 +64,20 @@ public class clsBolitas extends Thread {
 
     @Override
     public void run() {
-        while (this.cantBolitas < 75) {   //hágase mientras continuar sea verdadero
-            try {
+        try {
 
-                for (int i = 0; i < 75; i++) {
-                    gbingo.sacarBola(numerosBingo[i]);
-                    Thread.sleep(100);
+            for (int i = 0; i < 75; i++) {
+                if (!gbingo.sacarBola(numerosBingo[i])) {
+                    Thread.sleep(2000);
                     cantBolitas++;
+
+                } else {
+                    break;
                 }
 
-            } catch (InterruptedException ex) {
             }
+
+        } catch (InterruptedException ex) {
         }
     }
-
 }

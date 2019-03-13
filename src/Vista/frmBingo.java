@@ -11,11 +11,15 @@ import Datos.CartonesVendidos;
 import Datos.DatosPersona;
 import Logica.clsBolitas;
 import Logica.clsPersona;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -27,7 +31,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     BingoDatos bingoDatos = new BingoDatos();
     DefaultTableModel bingoModel;
-    clsBolitas bolita= new clsBolitas(this);
+    clsBolitas bolita = new clsBolitas(this);
     CartonesVendidos almacenaCarton = new CartonesVendidos(10);
     Datos.DatosPersona almacenaPersona = new DatosPersona(10);
     clsCarton crtObj;
@@ -46,6 +50,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         this.lableList = new JLabel[]{lblEstado1, lblEstado2, lblEstado3, lblEstado4, lblEstado5, lblEstado6, lblEstado7, lblEstado8, lblEstado9, lblEstado10};
         this.jbuttonList = new JButton[]{btnDatosCliente1, btnDatosCliente2, btnDatosCliente3, btnDatosCliente4, btnDatosCliente5, btnDatosCliente6, btnDatosCliente7, btnDatosCliente8, btnDatosCliente9, btnDatosCliente10};
         AgregarListener();
+
     }
 
     /**
@@ -961,6 +966,16 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 return canEdit [columnIndex];
             }
         });
+        tblBolitas.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                tblBolitasComponentMoved(evt);
+            }
+        });
+        tblBolitas.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tblBolitasPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBolitas);
         if (tblBolitas.getColumnModel().getColumnCount() > 0) {
             tblBolitas.getColumnModel().getColumn(0).setResizable(false);
@@ -1018,6 +1033,11 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         jMenu2.setText("Edit");
 
         jMenuItem1.setText("Nuevo Juego");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Generar Cartones");
@@ -1095,8 +1115,8 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(254, 254, 254))))
+                        .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1149,11 +1169,9 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     private void btnGenerarCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarCarActionPerformed
         // TODO add your handling code here:
-
         for (int i = 0; i < tableList.length; i++) {
-            tableList[i].setModel(llenarBingos(i, tableList[i]));
+            tableList[i].setModel(llenarBingos(i, tableList[i], 1));
         }
-
         btnGenerarCar.setEnabled(false);
 
     }//GEN-LAST:event_btnGenerarCarActionPerformed
@@ -1165,8 +1183,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         almacenaCarton = ventanaComprar.almacenaCarton;
         almacenaPersona = ventanaComprar.dataPersona;
         actualizarLabels();
-
-
     }//GEN-LAST:event_btnVenderCartonActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -1176,23 +1192,10 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        bingo1.setModel(llenarBingos(0, bingo1));
-        bingo2.setModel(llenarBingos(1, bingo2));
-        bingo3.setModel(llenarBingos(2, bingo3));
-        bingo4.setModel(llenarBingos(3, bingo4));
-        bingo5.setModel(llenarBingos(4, bingo5));
-        bingo6.setModel(llenarBingos(5, bingo6));
-        bingo7.setModel(llenarBingos(6, bingo7));
-        bingo8.setModel(llenarBingos(7, bingo8));
-        bingo9.setModel(llenarBingos(8, bingo9));
-        bingo10.setModel(llenarBingos(9, bingo10));
-        btnGenerarCar.setEnabled(false);
-        bolita.start();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-
         dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -1208,6 +1211,19 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
         bolita.start();
     }//GEN-LAST:event_btnGenerarBolitaActionPerformed
+
+    private void tblBolitasComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblBolitasComponentMoved
+        // TODO add your handling code here:
+        checkBingo(bingo1);
+    }//GEN-LAST:event_tblBolitasComponentMoved
+
+    private void tblBolitasPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tblBolitasPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblBolitasPropertyChange
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1321,46 +1337,56 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTable tblBolitas;
     // End of variables declaration//GEN-END:variables
 
-    private synchronized TableModel llenarBingos(int numBingo, JTable table) {
-        table.setEnabled(false);
+    private synchronized TableModel llenarBingos(int numBingo, JTable table, int func) {
         bingoModel = (DefaultTableModel) table.getModel();
+        bingoModel.setRowCount(0);
         int bingo[][] = bingoDatos.getBingo(numBingo);
         Object vectData[] = new Object[5];
         for (int columna = 0; columna < 5; columna++) {
             for (int fila = 0; fila < 5; fila++) {
                 vectData[fila] = bingo[fila][columna];
                 if (fila == 2 && columna == 2) {
-                    vectData[fila] = "**";
+                    vectData[fila] = "▓";
                 }
             }
-
             bingoModel.addRow(vectData);
         }
-        insertarCartonBingo(numBingo, bingo, null);
+        if (func == 1) {
+            insertarCartonBingo(numBingo, bingo, null);
+        }
 
         return bingoModel;
     }
 
-    public void sacarBola(int bolita) {
+    public synchronized boolean sacarBola(int bolita) {
         Object vectData[] = new Object[1];
         bingoModel = (DefaultTableModel) tblBolitas.getModel();
         vectData[0] = bolita;
         bingoModel.addRow(vectData);
         tblBolitas.setModel(bingoModel);
+        for (int i = 0; i < 10; i++) {
+            checkBingo(tableList[i]);
+//validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i])
+            for (int j = 0; j < 5; j++) {
+                if (validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i]) || (validarEsquinas(tableList[i]))) {
+                    tableList[i].setBackground(Color.GREEN);
+                    JOptionPane.showMessageDialog(this, "Cartón GANADOR " + (i + 1));
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
     }
 
     private void insertarCartonBingo(int numBingo, int[][] bingo, clsPersona persona) {
-        System.out.println("bingo");
         crtObj = new clsCarton(numBingo, bingo, false, null);
 
         if (almacenaCarton.insertCarton(crtObj)) {
-            System.out.println("INSERTARDO BINGO " + numBingo);
+
         }
 
-    }
-
-    private void mostrarDatosPersona(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void actualizarLabels() {
@@ -1371,7 +1397,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 jbuttonList[i].setEnabled(true);
             }
         }
-
     }
 
     @Override
@@ -1386,7 +1411,99 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         for (JButton jbuttonList1 : jbuttonList) {
             jbuttonList1.addActionListener(this);
         }
+    }
+
+    private void checkBingo(JTable table) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (table.getValueAt(i, j) == tblBolitas.getValueAt(tblBolitas.getRowCount() - 1, 0)) {
+                    table.getModel().setValueAt("▓", i, j);
+                    System.out.println("j " + j);
+                }
+            }
+
+        }
 
     }
 
+    private boolean validarFila(int fila, JTable table) {
+        for (int fil = 0; fil < 5; fil++) {
+            int[] filas = new int[5];
+            for (int col = 0; col < 5; col++) {
+                if (table.getValueAt(fila, col).equals("▓")) {
+                    filas[fila] = filas[fila] + 1;
+                }
+            }
+            for (int i = 0; i < filas.length; i++) {
+                if (filas[i] == 5) {
+                    return true;
+
+                }
+            }
+        }
+        return false;
+
+    }
+
+    private boolean validarColumna(int columna, JTable table) {
+        for (int col = 0; col < 5; col++) {
+            int[] columnas = new int[5];
+            for (int fil = 0; fil < 5; fil++) {
+                if (table.getValueAt(fil, col).equals("▓")) {
+                    columnas[col] = columnas[col] + 1;
+                }
+            }
+            for (int i = 0; i < columnas.length; i++) {
+                if (columnas[i] == 5) {
+                    return true;
+
+                }
+            }
+        }
+        return false;
+
+    }
+
+    private boolean validarDiagonales(int columna, JTable table) {
+        int diagonal1 = 0;
+        int diagonal2 = 0;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i == j && table.getValueAt(i, j).equals("▓")) {
+                    diagonal1 = diagonal1 + 1;
+                }
+
+                if (i + j == 25 - 1 && table.getValueAt(i, j).equals("▓")) {
+                    diagonal2 = diagonal2 + 1;
+
+                }
+            }
+        }
+        if (diagonal1 == 5 || diagonal2 == 5) {
+            return true;
+        }
+        return false;
+
+    }
+    
+      private boolean validarEsquinas(JTable table) {
+        int esquina = 0;
+                if (table.getValueAt(0, 0).equals("▓")) {
+                    esquina = esquina + 1;
+                }
+                if (table.getValueAt(0, 4).equals("▓")) {
+                    esquina = esquina + 1;
+                }
+                if (table.getValueAt(4, 0).equals("▓")) {
+                    esquina = esquina + 1;
+                }
+                if (table.getValueAt(4, 4).equals("▓")) {
+                    esquina = esquina + 1;
+                }
+        if (esquina == 4 ) {
+            return true;
+        }
+        return false;
+
+    }
 }
