@@ -33,6 +33,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
     public frmComprarCarton(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    
 
     }
 
@@ -41,6 +42,10 @@ public class frmComprarCarton extends javax.swing.JDialog {
         initComponents();
         this.almacenaCarton = almacenCarton;
         this.dataPersona = almacenaPersona;
+            txtNombre.setText("MANYOR");
+        txtCedula.setText("115320824");
+        txtApellidos.setText("GOMEZ");
+        txtTelefono.setText("84247160");
     }
 
     /**
