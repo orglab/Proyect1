@@ -155,6 +155,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         lblmiliSeg = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -370,6 +371,11 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         btnDatosCliente3.setText("Datos del Cliente");
         btnDatosCliente3.setEnabled(false);
         btnDatosCliente3.setName("2"); // NOI18N
+        btnDatosCliente3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosCliente3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1054,6 +1060,14 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
         jMenu1.setText("Archivo");
 
+        jMenuItem2.setText("Últimos Ganadores");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuItem5.setText("Salir");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1306,6 +1320,21 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         bolitas = new clsBolitas(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void btnDatosCliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDatosCliente3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        for (int i = 0; i < almacenaCarton.getNumRegs(); i++) {
+         
+            crtObj = almacenaCarton.getRegistro(i);
+        }
+        frmTablaGanadores tablaGanadores = new frmTablaGanadores(this, true, crtObj);
+        tablaGanadores.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1379,6 +1408,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

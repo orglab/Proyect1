@@ -307,7 +307,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
 
         if (almacenaCarton.editaRegistro(numBingo, crtObjs)) {
             System.out.println(cedula);
-            JOptionPane.showMessageDialog(rootPane, "Carton " + numBingo + " vendido");
+            JOptionPane.showMessageDialog(rootPane, "Carton " + (numBingo+1) + " vendido");
             this.dispose();
         } else {
             System.out.println("Problema en Vista.frmComprarCarton.asignarCartonPersona()");

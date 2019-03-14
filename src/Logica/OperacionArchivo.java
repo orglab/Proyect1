@@ -20,7 +20,8 @@ import java.util.Scanner;
  */
 public class OperacionArchivo {
 
-    private static final String sFichero = System.getProperty("user.home") + "\\Documents\\logApp.txt";
+    //private static final String sFichero = System.getProperty("user.home") + "\\Documents\\logApp.txt";
+    private static final String sFichero = System.getProperty("user.home") + "/Desktop/logApp.txt";
     private static String str;
     private static final Date fecha = new Date();
 
