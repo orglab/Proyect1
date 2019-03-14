@@ -20,8 +20,8 @@ import java.util.Scanner;
  */
 public class OperacionArchivo {
 
-    //private static final String sFichero = System.getProperty("user.home") + "\\Documents\\logApp.txt";
-    private static final String sFichero = System.getProperty("user.home") + "/Desktop/logApp.txt";
+    //private static final String sFichero = System.getProperty("user.home") 
+    private static final String sFichero = System.getProperty("user.home") + "\\Documents\\logApp.txt";
     private static String str;
     private static final Date fecha = new Date();
 
@@ -75,35 +75,40 @@ public class OperacionArchivo {
     public static ArrayList leerArchivo() {
         // crea el flujo para leer desde el archivo
         File file = new File(sFichero);
-        ArrayList listaEstudiantes = new ArrayList<>();
-        Scanner scanner;
-        try {
-            //se pasa el flujo al objeto scanner
-            scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                // el objeto scanner lee linea a linea desde el archivo
-                String linea = scanner.nextLine();
-                Scanner delimitar = new Scanner(linea);
-                //se usa una expresión regular
-                //que valida que antes o despues de una coma (,) exista cualquier cosa
-                //parte la cadena recibida cada vez que encuentre una coma				
-                delimitar.useDelimiter("\\s*,\\s*");
+        if (file.exists()) {
 
-                Object[] gap = new Object[7];
-                for (int i = 0; i < gap.length; i++) {
-                    gap[i] = delimitar.next();
+            ArrayList<clsCarton> listaGanadores = new ArrayList<>();
+            Scanner scanner;
+            try {
+                //se pasa el flujo al objeto scanner
+                scanner = new Scanner(file);
+                while (scanner.hasNextLine()) {
+                    // el objeto scanner lee linea a linea desde el archivo
+                    String linea = scanner.nextLine();
+                    Scanner delimitar = new Scanner(linea);
+                    //se usa una expresión regular
+                    //que valida que antes o despues de una coma (,) exista cualquier cosa
+                    //parte la cadena recibida cada vez que encuentre una coma				
+                    delimitar.useDelimiter("\\s*,\\s*");
 
+                    Object[] gap = new Object[7];
+                    for (int i = 0; i < gap.length; i++) {
+                        gap[i] = delimitar.next();
+
+                    }
+                    clsPersona per = new clsPersona(gap[3].toString(), gap[4].toString(), Integer.valueOf(gap[5].toString()), Integer.valueOf(gap[6].toString()));
+                    clsCarton carton = new clsCarton(Integer.valueOf(gap[0].toString()), true, fecha, per);
+                    listaGanadores.add(carton);
                 }
-                clsPersona per = new clsPersona(gap[3].toString(), gap[4].toString(), Integer.valueOf(gap[5].toString()), Integer.valueOf(gap[6].toString()));
-                clsCarton carton = new clsCarton(Integer.valueOf(gap[0].toString()), true, fecha, per);
-                listaEstudiantes.add(carton);
+                //se cierra el ojeto scanner
+                scanner.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            //se cierra el ojeto scanner
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return listaGanadores;
         }
-        return listaEstudiantes;
+        System.out.println("archivo No existe");
+        return null;
     }
     //añadir más estudiantes al archivo
 

@@ -5,7 +5,11 @@
  */
 package Vista;
 
+import Logica.OperacionArchivo;
 import Logica.clsCarton;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,14 +26,11 @@ public class frmTablaGanadores extends javax.swing.JDialog {
     public frmTablaGanadores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
-    frmTablaGanadores(java.awt.Frame parent, boolean modal, clsCarton obj) {
-        super(parent, modal);
+
+    frmTablaGanadores(frmBingo aThis) {
         initComponents();
-        this.carton = obj;
-        
-        
     }
 
     /**
@@ -56,7 +57,7 @@ public class frmTablaGanadores extends javax.swing.JDialog {
 
             },
             new String [] {
-                "LISTA GANADORES", ""
+                "CEDULA", "NOMBRE", "APELLIDO", "TELEFONO", "BINGO #l"
             }
         ));
         jScrollPane1.setViewportView(tblListaGanadores);
@@ -67,15 +68,15 @@ public class frmTablaGanadores extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -135,12 +136,19 @@ public class frmTablaGanadores extends javax.swing.JDialog {
 
     private void cargatTabla() {
         DefaultTableModel model = (DefaultTableModel) tblListaGanadores.getModel();
-        model.addRow(new String[]{"CARTON #", String.valueOf(carton.getNumCarton() + 1)});
-        model.addRow(new String[]{"Cédula", String.valueOf(carton.getPersona().getCedula())});
-        model.addRow(new String[]{"Nombre", carton.getPersona().getNombre()});
-        model.addRow(new String[]{"Apellidos", carton.getPersona().getApellido()});
-        model.addRow(new String[]{"Teléfono", String.valueOf(carton.getPersona().getTelefono())});
-        model.addRow(new String[]{"-----------------------------------------------"});
-        tblListaGanadores.setModel(model);
+
+        ArrayList leerArchivo = OperacionArchivo.leerArchivo();
+
+        if (leerArchivo != null) {
+            for (int i = 0; i < leerArchivo.size(); i++) {
+                clsCarton carton = (clsCarton) leerArchivo.get(i);
+                model.addRow(new Object[]{carton.getPersona().getCedula(),carton.getPersona().getNombre(),carton.getPersona().getApellido(),carton.getPersona().getTelefono(),carton.getNumCarton()});
+            }
+            tblListaGanadores.setModel(model);
+        } else {
+            JOptionPane.showMessageDialog(this, "Aun no se han registro de ganadores");
+            this.dispose();
+        }
+
     }
 }
