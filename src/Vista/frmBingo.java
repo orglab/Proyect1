@@ -17,9 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,20 +34,19 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     BingoDatos bingoDatos = new BingoDatos();
     DefaultTableModel bingoModel;
-    clsBolitas bolita = new clsBolitas(this);
+    clsBolitas bolita;
     CartonesVendidos almacenaCarton = new CartonesVendidos(10);
     Datos.DatosPersona almacenaPersona = new DatosPersona(10);
     clsCarton crtObj;
-    
+
     int miliseg;
     int seg;
     int min;
     int hora;
-    boolean estado= true;
-    
+    boolean estado = true;
 
     JTable tableList[];
-    JLabel lableList[];
+    JLabel[] labelList;
     JButton jbuttonList[];
     Timer timer = new Timer(1000, new ActionListener() {
 
@@ -70,11 +67,11 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
         initComponents();
         this.tableList = new JTable[]{bingo1, bingo2, bingo3, bingo4, bingo5, bingo6, bingo7, bingo8, bingo9, bingo10};
-        this.lableList = new JLabel[]{lblEstado1, lblEstado2, lblEstado3, lblEstado4, lblEstado5, lblEstado6, lblEstado7, lblEstado8, lblEstado9, lblEstado10};
+        this.labelList = new JLabel[]{lblEstado1, lblEstado2, lblEstado3, lblEstado4, lblEstado5, lblEstado6, lblEstado7, lblEstado8, lblEstado9, lblEstado10};
         this.jbuttonList = new JButton[]{btnDatosCliente1, btnDatosCliente2, btnDatosCliente3, btnDatosCliente4, btnDatosCliente5, btnDatosCliente6, btnDatosCliente7, btnDatosCliente8, btnDatosCliente9, btnDatosCliente10};
         AgregarListener();
-//        timer.start();
 
+//        timer.start();
     }
 
     /**
@@ -161,9 +158,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TICO BINGO");
@@ -794,8 +788,9 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lblEstado8))
-                .addGap(18, 30, Short.MAX_VALUE)
-                .addComponent(btnDatosCliente8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDatosCliente8)
+                .addContainerGap())
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cartón 9", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -967,6 +962,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
         btnVenderCarton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/VenderCarton.png"))); // NOI18N
         btnVenderCarton.setText("Vender Cartón");
+        btnVenderCarton.setEnabled(false);
         btnVenderCarton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVenderCartonActionPerformed(evt);
@@ -1032,11 +1028,12 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnComenzarJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Comenzar.png"))); // NOI18N
         btnComenzarJuego.setText("Comenzar Juego");
+        btnComenzarJuego.setEnabled(false);
         btnComenzarJuego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComenzarJuegoActionPerformed(evt);
@@ -1076,30 +1073,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
             }
         });
         jMenu2.add(jMenuItem1);
-
-        jMenuItem2.setText("Generar Cartones");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem3.setText("Vender Cartones");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setText("Comenzar Juego");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
@@ -1153,14 +1126,11 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                                 .addComponent(lblTimer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblmiliSeg, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1175,7 +1145,8 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGenerarCar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnVenderCarton)
-                            .addComponent(btnComenzarJuego)))
+                            .addComponent(btnComenzarJuego)
+                            .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel11))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1194,16 +1165,13 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(btnGenerarBolita, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(206, 206, 206)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1212,10 +1180,10 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     private void btnGenerarCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarCarActionPerformed
         // TODO add your handling code here:
-
         for (int i = 0; i < tableList.length; i++) {
             tableList[i].setModel(llenarBingos(i, tableList[i], 1));
         }
+        btnVenderCarton.setEnabled(true);
         btnGenerarCar.setEnabled(false);
 
     }//GEN-LAST:event_btnGenerarCarActionPerformed
@@ -1228,17 +1196,22 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         almacenaCarton = ventanaComprar.almacenaCarton;
         almacenaPersona = ventanaComprar.dataPersona;
         actualizarLabels();
+        int con = 0;
+        for (int i = 0; i < 10; i++) {
+            if (almacenaCarton.getRegistro(i).isEstado()) {
+                con++;
+            }
+        }
+        System.out.println(con + " ---");
+
+        if (con > 0 && con < 9) {
+            btnComenzarJuego.setEnabled(true);
+        } else if (con == 10) {
+            btnVenderCarton.setEnabled(false);
+        }
+
 
     }//GEN-LAST:event_btnVenderCartonActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        frmComprarCarton ventanaComprar = new frmComprarCarton(this, true);
-        ventanaComprar.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
@@ -1247,50 +1220,52 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     private void btnComenzarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarJuegoActionPerformed
         btnGenerarBolita.setEnabled(true);
-    }//GEN-LAST:event_btnComenzarJuegoActionPerformed
+        btnComenzarJuego.setEnabled(false);
+        btnVenderCarton.setEnabled(false);
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        btnGenerarBolita.setEnabled(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_btnComenzarJuegoActionPerformed
 
     private void btnGenerarBolitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarBolitaActionPerformed
         // TODO add your handling code here:
+        bolita = new clsBolitas(this);
         bolita.start();
-        estado= true;
-        Thread cronometro = new Thread(){
-            public void run(){
+        estado = true;
+        Thread cronometro = new Thread() {
+            @Override
+            public void run() {
                 for (;;) {
                     if (estado == true) {
                         try {
                             sleep(1);
                             if (miliseg >= 1000) {
-                                miliseg=0;
+                                miliseg = 0;
                                 seg++;
                             }
-                            if (seg>=60) {
+                            if (seg >= 60) {
                                 miliseg = 0;
-                                seg=0;
+                                seg = 0;
                                 min++;
                             }
-                            if (min>=60) {
+                            if (min >= 60) {
                                 miliseg = 0;
-                                seg=0;
-                                min=0;
+                                seg = 0;
+                                min = 0;
                                 hora++;
                             }
-                            lblTimer.setText(hora + " : " +min+ " : " +seg+ " : ");
+                            lblTimer.setText(hora + " : " + min + " : " + seg + " : ");
                             lblmiliSeg.setText("" + miliseg);
                             miliseg++;
                         } catch (Exception e) {
-                            
+
                         }
-                    }else{
+                    } else {
                         break;
                     }
                 }
             }
         };
         cronometro.start();
+        btnGenerarBolita.setEnabled(false);
     }//GEN-LAST:event_btnGenerarBolitaActionPerformed
 
     private void tblBolitasComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblBolitasComponentMoved
@@ -1302,13 +1277,34 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblBolitasPropertyChange
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void btnDatosCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCliente2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDatosCliente2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        almacenaCarton = new CartonesVendidos(10);
+        almacenaPersona = new DatosPersona(10);
+        for (int i = 0; i < tableList.length; i++) {
+            tableList[i].setBackground(Color.WHITE);
+            bingoModel = (DefaultTableModel) tableList[i].getModel();
+            bingoModel.setRowCount(0);
+            tableList[i].setModel(bingoModel);
+            labelList[i].setText("Disponible");
+            jbuttonList[i].setEnabled(false);
+        }
+        tblBolitas.removeAll();
+        bingoModel = (DefaultTableModel) tblBolitas.getModel();
+        bingoModel.setRowCount(0);
+        tblBolitas.setModel(bingoModel);
+        btnGenerarBolita.setEnabled(false);
+        lblTimer.setText("00:00:00");
+        lblmiliSeg.setText("0000");
+        clsBolitas bolitas = new clsBolitas(this);
+        btnGenerarCar.setEnabled(true);
+        bingoDatos = new BingoDatos();
+        bolitas = new clsBolitas(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1383,9 +1379,6 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1452,16 +1445,19 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
         bingoModel.addRow(vectData);
         tblBolitas.setModel(bingoModel);
         for (int i = 0; i < 10; i++) {
-            checkBingo(tableList[i]);
-            for (int j = 0; j < 5; j++) {
-                if (validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i]) || (validarEsquinas(tableList[i]))) {
-                    tableList[i].setBackground(Color.GREEN);
-                    estado = false;
-                    JOptionPane.showMessageDialog(this, "Cartón GANADOR " + (i + 1));
-                    if (almacenaCarton.getRegistro(i).isEstado()) {
-                        guardarRegistroGanador(almacenaCarton.getRegistro(i));
+            if (almacenaCarton.getRegistro(i).isEstado()) {
+                checkBingo(tableList[i]);
+                for (int j = 0; j < 5; j++) {
+                    if (validarFila(j, tableList[i]) || validarColumna(j, tableList[i]) || validarDiagonales(j, tableList[i]) || (validarEsquinas(tableList[i]))) {
+                        tableList[i].setBackground(Color.GREEN);
+                        estado = false;
+                        JOptionPane.showMessageDialog(this, "Cartón GANADOR " + (i + 1));
+                        if (almacenaCarton.getRegistro(i).isEstado()) {
+                            guardarRegistroGanador(almacenaCarton.getRegistro(i));
+                        }
+                        return true;
                     }
-                    return true;
+
                 }
 
             }
@@ -1480,9 +1476,9 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
     }
 
     private void actualizarLabels() {
-        for (int i = 0; i < lableList.length; i++) {
+        for (int i = 0; i < labelList.length; i++) {
             if (almacenaCarton.getRegistro(i).isEstado()) {
-                lableList[i].setText("VENDIDO");
+                labelList[i].setText("VENDIDO");
                 tableList[i].setEnabled(true);
                 jbuttonList[i].setEnabled(true);
             }

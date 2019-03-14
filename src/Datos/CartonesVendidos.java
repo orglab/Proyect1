@@ -34,7 +34,7 @@ public class CartonesVendidos {
     }
 
     public boolean insertCarton(clsCarton crtObj) {
-        if (this.numRegs < this.vect.length ) {
+        if (this.numRegs < this.vect.length) {
             this.vect[numRegs] = crtObj;
             this.numRegs++;
             return true;
@@ -45,7 +45,7 @@ public class CartonesVendidos {
     public clsCarton getRegistro(int pos) {
         return this.vect[pos];
     }
-    
+
     public boolean editaRegistro(int pos, clsCarton crtObj) {
         if (pos >= 0 && pos < this.numRegs) {
             this.vect[pos] = crtObj;
@@ -65,4 +65,12 @@ public class CartonesVendidos {
         }
         return false;
     }
+
+    public void removeAllRegistros() {
+        for (int i = 0; i < vect.length; i++) {
+             vect[i]=null;
+            
+        }
+    }
+
 }

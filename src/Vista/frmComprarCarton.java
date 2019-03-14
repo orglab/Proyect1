@@ -33,7 +33,6 @@ public class frmComprarCarton extends javax.swing.JDialog {
     public frmComprarCarton(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    
 
     }
 
@@ -42,6 +41,11 @@ public class frmComprarCarton extends javax.swing.JDialog {
         initComponents();
         this.almacenaCarton = almacenCarton;
         this.dataPersona = almacenaPersona;
+
+        txtNombre.setText("NOMBRE");
+        txtApellidos.setText("APELLIDOS");
+        txtCedula.setText("100");
+        txtTelefono.setText("200");
     }
 
     /**
@@ -193,7 +197,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
             return;
         }
 
-        asignarCartonPersona(Integer.parseInt(cmbNumCartones.getSelectedItem().toString()), txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtCedula.getText()), Integer.parseInt(txtTelefono.getText()));
+        asignarCartonPersona(Integer.parseInt(cmbNumCartones.getSelectedItem().toString())-1, txtNombre.getText(), txtApellidos.getText(), Integer.parseInt(txtCedula.getText()), Integer.parseInt(txtTelefono.getText()));
 
 
     }//GEN-LAST:event_btnReservarActionPerformed
@@ -285,11 +289,10 @@ public class frmComprarCarton extends javax.swing.JDialog {
     // se carga el comboBox, y muestra los numeros de cartones disponibles
     public void cargaCMB() {
         DefaultComboBoxModel comboModelo = (DefaultComboBoxModel) cmbNumCartones.getModel();
-
         for (int i = 0; i < almacenaCarton.getNumRegs(); i++) {
             crtObj = almacenaCarton.getRegistro(i);
             if (!almacenaCarton.getRegistro(i).isEstado()) {
-                Object nuevaFila[] = {crtObj.getNumCarton()};
+                Object nuevaFila[] = {crtObj.getNumCarton()+1};
                 comboModelo.addElement(nuevaFila[0]);
             }
         }
@@ -311,7 +314,7 @@ public class frmComprarCarton extends javax.swing.JDialog {
         }
 
     }
-    
+
     private void insertarPersona(String nombre, String apellido, int cedula, int telefono) {
         personaObj = new clsPersona(nombre, apellido, cedula, telefono);
 
