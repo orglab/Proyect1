@@ -1326,11 +1326,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
-        for (int i = 0; i < almacenaCarton.getNumRegs(); i++) {
-         
-            crtObj = almacenaCarton.getRegistro(i);
-        }
-        frmTablaGanadores tablaGanadores = new frmTablaGanadores(this, true, crtObj);
+        frmTablaGanadores tablaGanadores = new frmTablaGanadores(this);
         tablaGanadores.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
