@@ -95,7 +95,6 @@ public class OperacionArchivo {
                 }
                 clsPersona per = new clsPersona(gap[3].toString(), gap[4].toString(), Integer.valueOf(gap[5].toString()), Integer.valueOf(gap[6].toString()));
                 clsCarton carton = new clsCarton(Integer.valueOf(gap[0].toString()), true, fecha, per);
-
                 listaEstudiantes.add(carton);
             }
             //se cierra el ojeto scanner

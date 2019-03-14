@@ -91,4 +91,11 @@ public class DatosPersona {
         return false;
     }
 
+    public void removeAllRegistros() {
+        for (int i = 0; i < vect.length; i++) {
+            vect[i] = null;
+
+        }
+    }
+
 }
