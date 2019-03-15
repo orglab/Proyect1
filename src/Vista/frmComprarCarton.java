@@ -203,7 +203,6 @@ public class frmComprarCarton extends javax.swing.JDialog {
     }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        cmbNumCartones.removeAllItems();
         txtNombre.setText(null);
         txtApellidos.setText(null);
         txtCedula.setText(null);

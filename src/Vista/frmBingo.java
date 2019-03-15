@@ -162,6 +162,7 @@ public class frmBingo extends javax.swing.JFrame implements ActionListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TICO BINGO");
+        setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cartón 1", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
